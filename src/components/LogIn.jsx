@@ -1,6 +1,6 @@
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import { AuthContext } from "./../Providers/AuthProvider";
-import { Link } from 'react-router-dom';
 
 const LogIn = () => {
   const { signInUser } = useContext(AuthContext);
@@ -19,7 +19,7 @@ const LogIn = () => {
         const lastSignInTime = result?.user?.metadata?.lastSignInTime;
         const logInInfo = { email, lastSignInTime };
 
-        fetch(`http://localhost:5000/users`, { 
+        fetch(`https://coffee-store-server-theta-dusky.vercel.app/users`, {
           method: "PATCH",
           headers: {
             "content-type": "application/json",
@@ -80,7 +80,9 @@ const LogIn = () => {
             <div className="form-control mt-6">
               <button className="btn btn-primary">Sign In</button>
             </div>
-            <p>Mew to Coffee Driker: <Link to='/signup'>SignUp</Link></p>
+            <p>
+              Mew to Coffee Driker: <Link to="/signup">SignUp</Link>
+            </p>
           </form>
         </div>
       </div>

@@ -14,24 +14,24 @@ const SignUp = () => {
 
     createUser(email, password)
       .then((result) => {
-        console.log('User created at firebase ',result.user);
+        console.log("User created at firebase ", result.user);
         const createdAt = result.user?.metadata?.creationTime;
 
-        const newUser = {name,email,createdAt}
+        const newUser = { name, email, createdAt };
 
         //save new user info to the database
-        fetch("http://localhost:5000/users", {
+        fetch("https://coffee-store-server-theta-dusky.vercel.app/users", {
           method: "POST",
           headers: {
-            'content-type':'application/json'
+            "content-type": "application/json",
           },
-          body: JSON.stringify(newUser)
+          body: JSON.stringify(newUser),
         })
           .then((res) => res.json())
           .then((data) => {
             console.log("user created to db", data);
-            if(data.insertedId){
-              console.log('user created at DB')
+            if (data.insertedId) {
+              console.log("user created at DB");
             }
           });
       })

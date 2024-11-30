@@ -18,9 +18,12 @@ const Users = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         //delete from the database
-        fetch(`http://localhost:5000/users/${id}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `https://coffee-store-server-theta-dusky.vercel.app/users/${id}`,
+          {
+            method: "DELETE",
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount) {
@@ -30,8 +33,8 @@ const Users = () => {
                 icon: "success",
               });
 
-              const remainingUser = users.filter(user => user._id !== id);
-                setUsers(remainingUser)
+              const remainingUser = users.filter((user) => user._id !== id);
+              setUsers(remainingUser);
             }
           });
       }
